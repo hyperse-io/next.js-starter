@@ -1,9 +1,10 @@
-# uicolors
+# next.js starter
 
-Tailwind CSS Color Generator
+The start infrastructure for next.js, used to create basic project structures based on next.js
 
 ## references
 
-https://uicolors.app/create
-https://www.tints.dev/purplex/A855F7
-https://tailcolor.com/?color=494821
+https://flowbite.com/docs/components/datepicker/
+https://flowbite-react.com/docs/components/alert
+https://flowbite-admin-dashboard.vercel.app/
+https://github.com/themesberg/flowbite-admin-dashboard
