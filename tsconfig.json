@@ -1,0 +1,77 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": "./",
+    "types": [
+      "vitest/globals"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/utils/*": [
+        "./src/utils/*"
+      ],
+      "@/data/*": [
+        "./src/data/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/config/*": [
+        "./src/config/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      },
+      {
+        "name": "@0no-co/graphqlsp",
+        "schemas": [
+          {
+            "name": "shop-api",
+            "schema": "http://localhost:7001/shop-api",
+            "tadaOutputLocation": "./src/common/graphql-env.d.ts"
+          }
+        ]
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "next-intl.d.ts",
+    "next-pages.d.ts",
+    "**/*.ts",
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next"
+  ]
+}

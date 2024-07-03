@@ -1,0 +1,47 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+  },
+  "LocaleSwitcher": {
+    "locale": "{locale, select, zh {简体中文} en {English} other {Unknown}}"
+  },
+  "Navigation": {
+    "home": "Home",
+    "pathnames": "Pathnames"
+  },
+  "LayoutWrapper": {
+    "links": {
+      "docs": {
+        "title": "Docs",
+        "description": "Learn more about at hyperse.io",
+        "href": "https://www.hyperse.io/"
+      },
+      "source": {
+        "title": "Source code",
+        "description": "Browse the source code on GitHub.",
+        "href": "https://github.com/hyperse-io/"
+      }
+    }
+  },
+  "SignUp": {
+    "error": "{error, select, USER_ALREADY_EXISTS {User already exists} other {Unknown error}}"
+  },
+  "Login": {
+    "title": "Sign in",
+    "email": "Email address",
+    "password": "One-Time Password",
+    "submit": "Sign in",
+    "send": "Send",
+    "sent": "Sent",
+    "error": "{error, select, InvalidCredentialsError {The provided credentials are invalid} other {Invalid email or password}}"
+  }
+}
