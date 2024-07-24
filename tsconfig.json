@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,28 +17,14 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
-    "types": [
-      "vitest/globals"
-    ],
+    "types": ["vitest/globals"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/utils/*": [
-        "./src/utils/*"
-      ],
-      "@/data/*": [
-        "./src/data/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/config/*": [
-        "./src/config/*"
-      ],
-      "@/public/*": [
-        "./public/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/data/*": ["./src/data/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/config/*": ["./src/config/*"],
+      "@/public/*": ["./public/*"]
     },
     "plugins": [
       {
@@ -70,8 +52,5 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ]
+  "exclude": ["node_modules", ".next"]
 }

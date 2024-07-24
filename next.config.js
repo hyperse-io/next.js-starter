@@ -1,4 +1,5 @@
 import withNextIntl from 'next-intl/plugin';
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 import { z } from 'zod';
 import { getNextConfig, getNextConfigEnv } from '@hyperse-io/next-env';
 import bundleAnalyzer from '@next/bundle-analyzer';
@@ -14,6 +15,8 @@ const ContentSecurityPolicy = `
   font-src 'self';
   frame-src giscus.app
 `;
+
+const isDev = process.env.NODE_ENV === 'development';
 
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
@@ -99,6 +102,12 @@ const config = {
     dirs: ['src'],
   },
   webpack(config) {
+    if (isDev) {
+      config.plugins.push(
+        // SSR can't not remove data-insp-path from `html` tag, so do not set hideDomPathAttr to false
+        codeInspectorPlugin({ bundler: 'webpack', hideDomPathAttr: false })
+      );
+    }
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
