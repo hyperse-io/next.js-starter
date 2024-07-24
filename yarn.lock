@@ -2682,7 +2682,7 @@ __metadata:
     autoprefixer: "npm:^10.4.19"
     class-variance-authority: "npm:0.7.0"
     clsx: "npm:^2.1.1"
-    code-inspector-plugin: "npm:^0.15.0"
+    code-inspector-plugin: "npm:^0.15.2"
     commitizen: "npm:4.3.0"
     cookies-next: "npm:4.2.1"
     cross-env: "npm:7.0.3"
@@ -5684,7 +5684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"code-inspector-plugin@npm:^0.15.0":
+"code-inspector-plugin@npm:^0.15.2":
   version: 0.15.2
   resolution: "code-inspector-plugin@npm:0.15.2"
   dependencies:
