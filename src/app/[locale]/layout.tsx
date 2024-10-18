@@ -4,7 +4,6 @@ import { Inter as FontSans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-import { PublicEnvScript } from 'next-runtime-env';
 import { AuthModal } from '@/components/Auth';
 import { Providers } from '@/components/Providers/Providers';
 import { ScrollTop } from '@/components/ScrollTop';
@@ -75,7 +74,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        <PublicEnvScript />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
