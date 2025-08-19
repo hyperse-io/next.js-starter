@@ -1,12 +1,13 @@
 import { type NextRequest, NextResponse } from 'next/server.js';
-import { ensureSlash } from '@/utils/ensure-slash';
+import { ensureSlash } from '@/utils/ensureSlash';
 import { getSession } from './get-session';
 
-export const createAuthMiddleware =
-  (nextMiddleware: (request: NextRequest) => NextResponse<unknown>) =>
-  async (req: NextRequest) => {
+export const createAuthMiddleware = (
+  nextMiddleware: (request: NextRequest) => NextResponse<unknown>
+) => {
+  return async (req: NextRequest) => {
     // Wrapper a proxy to make `getSession` work for `edg` runtime mode.
-    const session = await getSession();
+    const session = await getSession(req);
     if (!session) {
       const loginPage = `/login`;
       const wantToPathname = req.nextUrl.pathname;
@@ -23,3 +24,4 @@ export const createAuthMiddleware =
     }
     return nextMiddleware(req);
   };
+};

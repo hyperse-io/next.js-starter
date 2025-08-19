@@ -1,14 +1,9 @@
-import { type MutableRefObject, useEffect, useRef, useState } from 'react';
-
-export interface UseScrollTriggerOptions {
-  disableHysteresis?: boolean;
-  target?: Window | null;
-  threshold?: number;
-  getTrigger?: typeof defaultTrigger;
-}
+'use client';
+import type { RefObject } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function defaultTrigger(
-  store: MutableRefObject<any>,
+  store: RefObject<number>,
   options: UseScrollTriggerOptions
 ) {
   const { disableHysteresis = false, threshold = 100, target } = options;
@@ -17,19 +12,15 @@ function defaultTrigger(
   if (target) {
     // Get vertical scroll
     store.current =
-      target.pageYOffset !== undefined
-        ? target.pageYOffset
-        : target.scrollY !== undefined
-          ? target.scrollY
-          : target.document.documentElement.scrollTop;
+      (target as Window).pageYOffset !== undefined
+        ? (target as Window).pageYOffset
+        : (target as HTMLElement).scrollTop;
   }
 
-  if (
-    !disableHysteresis &&
-    previous !== undefined &&
-    store.current < previous
-  ) {
-    return false;
+  if (!disableHysteresis && previous !== undefined) {
+    if (store.current < previous) {
+      return false;
+    }
   }
 
   return store.current > threshold;
@@ -37,34 +28,30 @@ function defaultTrigger(
 
 const defaultTarget = typeof window !== 'undefined' ? window : null;
 
-export default function useScrollTrigger(
-  options: UseScrollTriggerOptions = {}
-) {
-  const {
-    getTrigger = defaultTrigger,
-    target = defaultTarget,
-    ...other
-  } = options;
-  const store = useRef();
-  const [trigger, setTrigger] = useState(() => getTrigger(store, other));
+export interface UseScrollTriggerOptions {
+  disableHysteresis?: boolean;
+  target?: Window | Node | null;
+  threshold?: number;
+}
 
-  // No error
-  const opts: AddEventListenerOptions & EventListenerOptions = {
-    passive: true,
-  };
-
+export function useScrollTrigger(options: UseScrollTriggerOptions) {
+  const { target = defaultTarget, ...other } = options;
+  const store = useRef<number>(0);
+  const [trigger, setTrigger] = useState(() => defaultTrigger(store, other));
   useEffect(() => {
+    if (target === null) {
+      return setTrigger(false);
+    }
     const handleScroll = () => {
-      setTrigger(getTrigger(store, { target, ...other }));
+      setTrigger(defaultTrigger(store, { target, ...other }));
     };
 
     handleScroll(); // Re-evaluate trigger when dependencies change
-    target?.addEventListener('scroll', handleScroll, opts);
+    target.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      target?.removeEventListener('scroll', handleScroll, opts);
+      target?.removeEventListener('scroll', handleScroll);
     };
-    // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
-  }, [target, getTrigger, JSON.stringify(other)]);
+  }, [target, JSON.stringify(other)]);
 
   return trigger;
 }

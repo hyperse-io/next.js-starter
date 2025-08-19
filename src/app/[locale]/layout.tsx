@@ -1,75 +1,33 @@
 import { type PropsWithChildren } from 'react';
-import { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-import { AuthModal } from '@/components/Auth';
-import { Providers } from '@/components/Providers/Providers';
-import { ScrollTop } from '@/components/ScrollTop';
-import { siteMetadata } from '@/data/siteMetadata';
-import { locales } from '@/navigation';
-import { Toaster } from '@/ui/toaster';
-import { cn } from '@/utils/cn';
-import '../globals.css';
-
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
-
-export const metadata: Metadata = {
-  metadataBase: new URL(siteMetadata.siteUrl),
-  title: {
-    default: siteMetadata.title,
-    template: `%s | ${siteMetadata.title}`,
-  },
-  description: siteMetadata.description,
-  openGraph: {
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    url: './',
-    siteName: siteMetadata.title,
-    images: [siteMetadata.socialBanner],
-    locale: 'en_US',
-    type: 'website',
-  },
-  alternates: {
-    canonical: './',
-    types: {
-      'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  twitter: {
-    title: siteMetadata.title,
-    card: 'summary_large_image',
-    images: [siteMetadata.socialBanner],
-  },
-};
+import { setRequestLocale } from 'next-intl/server';
+import { ProviderWrapper } from '@/components/ProviderWrapper';
+import { defaultDomain } from '@/config/region';
+import { routing } from '@/i18n/routing';
+import { fonts } from '@/theme/fonts';
+import { cn } from '@heroui/react';
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: PropsWithChildren<PageProps>) {
-  // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as never)) notFound();
+  const { locale } = await params;
 
-  // https://next-intl-docs.vercel.app/blog/next-intl-3-0#static-rendering-of-server-components
-  unstable_setRequestLocale(locale);
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
 
-  // Receive messages provided in `i18n.ts`
-  const messages = await getMessages();
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const domainLocale = (routing.domains || []).find(
+    (d) => d.defaultLocale === locale
+  );
+
+  const domainName = domainLocale ? domainLocale.domain : defaultDomain;
+  const domain = `https://${domainName.replace(/(?:https|http)?:\/\//, '')}`;
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -78,16 +36,18 @@ export default async function LocaleLayout({
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className={cn(`${fontSans.className}`)}>
-        {/* FIXM: we can put NextIntlClientProvider into Where client internationalization is required, Extract minimized messages from server-side (getMessages) */}
-        <Providers>
-          <NextIntlClientProvider messages={messages} locale={locale}>
+      <body
+        className={cn(
+          'text-foreground bg-background min-h-screen font-sans antialiased',
+          fonts.sans.variable,
+          fonts.mono.variable
+        )}
+      >
+        <NextIntlClientProvider>
+          <ProviderWrapper locale={locale} domain={domain}>
             {children}
-            <Toaster />
-            <AuthModal />
-            <ScrollTop />
-          </NextIntlClientProvider>
-        </Providers>
+          </ProviderWrapper>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

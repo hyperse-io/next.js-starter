@@ -3,8 +3,8 @@ declare type PageProps<
     //
   },
 > = {
-  params: { locale: string } & Param;
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ locale: string } & Param>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 // For CSS

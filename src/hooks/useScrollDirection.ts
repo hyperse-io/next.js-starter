@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 
 type ScrollDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | null;
@@ -124,6 +126,7 @@ export function useScrollDirection(
       addScrollListener(handleScroll, targetToUse);
       return () => removeScrollListener(handleScroll, targetToUse);
     }
+    return undefined;
   }, [timeout, targetToUse]);
 
   return {

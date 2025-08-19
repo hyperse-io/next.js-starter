@@ -1,6 +1,7 @@
+'use client';
+
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { useEventCallback } from 'usehooks-ts';
 import { usePrevious } from './usePrevious';
 
 export function useRouteChange(
@@ -12,18 +13,16 @@ export function useRouteChange(
   const location = usePathname();
   const previousLocation = usePrevious(location);
 
-  const onLocationChangeDynamic = useEventCallback(onRouteChange);
-
   useEffect(() => {
     if (!previousLocation) {
       return;
     }
 
     if (location !== previousLocation) {
-      onLocationChangeDynamic({
+      onRouteChange({
         location,
         previousLocation,
       });
     }
-  }, [location, onLocationChangeDynamic, previousLocation]);
+  }, [location, onRouteChange, previousLocation]);
 }

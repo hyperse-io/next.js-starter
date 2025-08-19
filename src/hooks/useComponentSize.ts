@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 export function useComponentSize() {
@@ -5,7 +7,7 @@ export function useComponentSize() {
     height: 0,
     width: 0,
   });
-  const ref = useRef<any>();
+  const ref = useRef<any>(undefined);
 
   const onResize = useCallback(() => {
     if (!ref.current) {

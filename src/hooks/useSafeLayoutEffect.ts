@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect, useLayoutEffect } from 'react';
-import { isBrowser } from '@/utils/dom';
+import { isBrowser } from '@/utils/isBrowser';
 
 /**
  * useSafeLayoutEffect enables us to safely call `useLayoutEffect` on the browser

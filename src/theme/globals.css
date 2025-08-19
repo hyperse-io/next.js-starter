@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@plugin "tailwindcss-react-aria-components";
+@plugin "tailwindcss-animate";
+/* @plugin '@tailwindcss/typography'; */
+@plugin './hero.ts';
+
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@source '../../node_modules/@hyperse/hero-tel-input/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --container-8xl: 90rem;
+  --container-9xl: 96rem;
+}

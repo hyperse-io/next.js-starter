@@ -1,0 +1,10 @@
+{
+  "IndexPage": {
+    "title": "Next.js 脚手架",
+    "description": "这是一个基本的示例，演示了如何使用 <code>next-intl</code> 与 Next.js App Router 结合使用。尝试更改右上角的语言并查看内容如何变化。"
+  },
+  "Error": {
+    "title": "出错了！",
+    "description": "<p>我们不幸地遇到了一个错误。</p><p>您可以尝试 <retry>重新加载页面</retry> 您正在访问的页面。</p>"
+  }
+}

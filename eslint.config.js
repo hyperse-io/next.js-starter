@@ -1,15 +1,21 @@
-import { base, defineConfig } from '@hyperse/eslint-config-hyperse';
+import { defineConfig, nextjs } from '@hyperse/eslint-config-hyperse';
 
-export default defineConfig(
-  [
-    ...base,
-    {
-      rules: {
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-empty-object-type': 'off',
-        'sonarjs/no-duplicate-string': 'off',
-      },
+export default defineConfig([
+  ...nextjs,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-deprecated': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
+      'tailwindcss/no-custom-classname': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      'sonarjs/prefer-read-only-props': 'off',
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['@issilo/*/*'],
+        },
+      ],
     },
-  ],
-  ['**/.contentlayer', '**/config/tag-data.json']
-);
+  },
+]);

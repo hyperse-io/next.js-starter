@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -6,25 +7,22 @@
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
+    "verbatimModuleSyntax": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "noUncheckedIndexedAccess": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/data/*": ["./src/data/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/config/*": ["./src/config/*"],
-      "@/public/*": ["./public/*"]
+      "@/*": ["./*"],
+      "@/public/*": ["../public/*"]
     },
     "plugins": [
       {
@@ -32,10 +30,12 @@
       },
       {
         "name": "@0no-co/graphqlsp",
+        "shouldCheckForColocatedFragments": false,
+        "trackFieldUsage": false,
         "schemas": [
           {
             "name": "shop-api",
-            "schema": "http://localhost:7001/shop-api",
+            "schema": "http://localhost:3001/shop-api",
             "tadaOutputLocation": "./src/common/graphql-env.d.ts"
           }
         ]
@@ -50,7 +50,8 @@
     "**/*.cjs",
     "**/*.mjs",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "eslint.config.js"
   ],
   "exclude": ["node_modules", ".next"]
 }
