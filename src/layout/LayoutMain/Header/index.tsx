@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import {
   NoticeBar,
   noticebarHeight,
   type NoticeBarProps,
 } from '@/components/NoticeBar';
+import { useScrollTrigger } from '@/hooks/useScrollTrigger';
 import { cn } from '@heroui/react';
 import { HeaderContent } from './HeaderContent';
 import type { MegaMenuProps } from './MegaMenu';
@@ -16,8 +16,9 @@ type HeaderProps = {
 };
 
 export function Header({ collections, noticebar }: HeaderProps) {
-  const [trigger, setTrigger] = useState(false);
-
+  const trigger = useScrollTrigger({
+    threshold: noticebarHeight,
+  });
   return (
     <div
       className={cn(
@@ -29,14 +30,7 @@ export function Header({ collections, noticebar }: HeaderProps) {
           : 'translateY(0)',
       }}
     >
-      {noticebar ? (
-        <NoticeBar
-          item={noticebar}
-          onScrollTrigger={(trigger) => {
-            setTrigger(trigger);
-          }}
-        />
-      ) : null}
+      {noticebar ? <NoticeBar item={noticebar} /> : null}
       <HeaderContent collections={collections} noticebarHidden={trigger} />
     </div>
   );
