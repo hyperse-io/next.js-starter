@@ -6,5 +6,9 @@
   "Error": {
     "title": "出错了！",
     "description": "<p>我们不幸地遇到了一个错误。</p><p>您可以尝试 <retry>重新加载页面</retry> 您正在访问的页面。</p>"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, zh {🇨🇳 Chinese} en {🇺🇸 English} other {Unknown}}"
   }
 }

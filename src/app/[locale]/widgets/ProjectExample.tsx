@@ -7,5 +7,10 @@ type ProjectExampleProps = {
 
 export const ProjectExample = ({ projectFetcher }: ProjectExampleProps) => {
   const project = use(projectFetcher);
-  return <div>{project.name}</div>;
+  return (
+    <div className="space-y-2">
+      <p>{project.name}</p>
+      <p>{project.description}</p>
+    </div>
+  );
 };

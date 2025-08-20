@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { fetchGithubProject } from '@/data/githubProject/fetchGithubProject';
 import { LayoutMain } from '@/layout/LayoutMain';
 import { Chip } from '@heroui/chip';
+import { Divider } from '@heroui/react';
 import { Spinner } from '@heroui/spinner';
 import { CardReview } from './widgets/card-review';
 import { DataExample } from './widgets/DataExample';
@@ -22,6 +23,7 @@ export default async function Pages(props: PageProps) {
           {t('title')}
         </Chip>
         <DataExample />
+        <Divider />
         <Suspense fallback={<Spinner variant="gradient" color="primary" />}>
           <ProjectExample projectFetcher={projectFetcher} />
         </Suspense>

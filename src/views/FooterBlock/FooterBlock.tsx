@@ -1,3 +1,4 @@
+import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { Logo } from '@/components/Logo';
 import type { ExpandableTreeNodeResult } from '@dimjs/utils';
 import { arrayToTree } from '@dimjs/utils';
@@ -71,7 +72,10 @@ export function FooterBlock({ footerLinks }: FooterBlockProps) {
           <p className="text-small text-default-400">
             &copy; 2025 vercel Inc. All rights reserved.
           </p>
-          <ThemeSwitch />
+          <div className="flex min-w-[500px] items-center gap-2">
+            <ThemeSwitch className="w-[200px]" />
+            <LocaleSwitcher className="w-[150px]" />
+          </div>
         </div>
       </div>
     </footer>
