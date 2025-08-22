@@ -6479,6 +6479,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stripe/react-stripe-js@npm:^3.9.1":
+  version: 3.9.1
+  resolution: "@stripe/react-stripe-js@npm:3.9.1"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    "@stripe/stripe-js": ">=1.44.1 <8.0.0"
+    react: ">=16.8.0 <20.0.0"
+    react-dom: ">=16.8.0 <20.0.0"
+  checksum: 10/07cc562d383a27fc3ec21d647ccb5d1729d1c151978b24e2590c218ea4f47cd10babf3700edfd7bb45dabc0fad483e44e28b9febb7db6581144c36143acf8f7c
+  languageName: node
+  linkType: hard
+
+"@stripe/stripe-js@npm:^7.8.0":
+  version: 7.8.0
+  resolution: "@stripe/stripe-js@npm:7.8.0"
+  checksum: 10/a86299eefa5e09865609c439df033eee30a90a994eb6003fe106d7b27439ff8110292c0ddc3452a091241ce00c459053c9030b2323d6d83ed3476df0a12305a4
+  languageName: node
+  linkType: hard
+
 "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0":
   version: 8.0.0
   resolution: "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0"
@@ -12607,6 +12627,8 @@ __metadata:
     "@hyperse/next-inspector": "npm:^1.1.9"
     "@iconify/react": "npm:^6.0.0"
     "@next/bundle-analyzer": "npm:15.4.7"
+    "@stripe/react-stripe-js": "npm:^3.9.1"
+    "@stripe/stripe-js": "npm:^7.8.0"
     "@svgr/webpack": "npm:^8.1.0"
     "@tailwindcss/postcss": "npm:^4.1.12"
     "@tailwindcss/typography": "npm:^0.5.16"
@@ -12640,6 +12662,7 @@ __metadata:
     react-hook-form: "npm:^7.62.0"
     sharp: "npm:^0.34.3"
     simplebar-react: "npm:^3.3.2"
+    stripe: "npm:^18.4.0"
     swr: "npm:^2.3.6"
     tailwindcss: "npm:^4.1.12"
     tailwindcss-animate: "npm:^1.0.7"
@@ -13546,6 +13569,15 @@ __metadata:
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
   checksum: 10/febdc4362bead22f9e2608ff0171713230b57aff9dddc1c273aa2a651fbd366f94b7d6a71d78342a7c0819906750351ca7f2edd26ea41b626d87d6a13d1bd059
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "qs@npm:6.14.0"
+  dependencies:
+    side-channel: "npm:^1.1.0"
+  checksum: 10/a60e49bbd51c935a8a4759e7505677b122e23bf392d6535b8fc31c1e447acba2c901235ecb192764013cd2781723dc1f61978b5fdd93cc31d7043d31cdc01974
   languageName: node
   linkType: hard
 
@@ -14927,6 +14959,20 @@ __metadata:
   dependencies:
     js-tokens: "npm:^9.0.1"
   checksum: 10/da1616f654f3ff481e078597b4565373a5eeed78b83de4a11a1a1b98292a9036f2474e528eff19b6eed93370428ff957a473827057c117495086436725d7efad
+  languageName: node
+  linkType: hard
+
+"stripe@npm:^18.4.0":
+  version: 18.4.0
+  resolution: "stripe@npm:18.4.0"
+  dependencies:
+    qs: "npm:^6.11.0"
+  peerDependencies:
+    "@types/node": ">=12.x.x"
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+  checksum: 10/e8d6453de78d935d9779b68ff6107a592c288f43eb0d48a6a0e4efdd8ced1796f65278e1b02a04fd80ab9a5aa5f5faf1785e7d95f71f514e231ce47c3f981d34
   languageName: node
   linkType: hard
 

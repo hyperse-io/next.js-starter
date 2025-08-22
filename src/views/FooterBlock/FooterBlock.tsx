@@ -39,7 +39,7 @@ export function FooterBlock({ footerLinks }: FooterBlockProps) {
   const linkTree = toLinkTree(footerLinks);
   return (
     <footer>
-      <div className="max-w-8xl mx-auto px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 md:pr-8">
             <div className="flex items-center justify-start">
@@ -72,7 +72,7 @@ export function FooterBlock({ footerLinks }: FooterBlockProps) {
           <p className="text-small text-default-400">
             &copy; 2025 vercel Inc. All rights reserved.
           </p>
-          <div className="flex min-w-[500px] items-center gap-2">
+          <div className="flex items-center gap-2">
             <ThemeSwitch className="w-[200px]" />
             <LocaleSwitcher className="w-[150px]" />
           </div>

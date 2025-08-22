@@ -10,5 +10,67 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, zh {🇨🇳 Chinese} en {🇺🇸 English} other {Unknown}}"
+  },
+  "Stripe": {
+    "Documentation": {
+      "Intent": "Build integrations that can handle complex payment flows. The status of the payment flow changes as the PaymentIntent progresses from creation to the entire checkout process. This API tracks the payment status throughout the process and triggers additional validation steps as needed.",
+      "Checkout": "Checkout is a low-code, pre-built payment form that can be hosted by Stripe or embedded in your website. Checkout uses the Checkout Sessions API. You can use the API with Stripe Elements to build a more personalized checkout experience."
+    },
+    "Examples": {
+      "title": "Stripe Checkout Examples",
+      "useForm": "Use Checkout Form",
+      "useComponent": "Use Checkout Component",
+      "useRedirect": "Redirect to Stripe Checkout"
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Please enter your payment details",
+      "button": "Pay now",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "Please enter your email",
+        "extraInfo": "Extra information, not included in the Stripe payment element, business defined"
+      }
+    },
+    "Success": {
+      "title": "Payment Success"
+    },
+    "Canceled": {
+      "title": "Payment Canceled"
+    }
+  },
+  "Next": {
+    "Examples": {
+      "title": "Next Checkout Examples",
+      "useForm": "Use Checkout Form",
+      "useComponent": "Use Checkout Component",
+      "useRedirect": "Redirect to Next Checkout"
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Please enter your payment details",
+      "button": "Pay now",
+      "form": {
+        "email": "Email",
+        "emailPlaceholder": "Please enter your email",
+        "extraInfo": "Extra information, not included in the Stripe payment element, business defined"
+      }
+    },
+    "Success": {
+      "title": "Payment Success"
+    },
+    "Canceled": {
+      "title": "Payment Canceled"
+    }
+  },
+  "OrderSummary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total"
+  },
+  "Products": {
+    "title": "Products"
   }
 }

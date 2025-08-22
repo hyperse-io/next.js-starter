@@ -15,7 +15,7 @@ const plugins: NextConfigPlugin[] = [
     trustedEditor: 'cursor', // or 'vscode', 'webstorm', etc.
     customLaunchEditorEndpoint: '/hps_inspector',
     keys: ['$mod', 'i'], // Customize hotkeys
-    hideDomPathAttr: true,
+    hideDomPathAttr: false,
   }),
   bundleAnalyzer({
     enabled: process.env.ANALYZE === 'true',
@@ -34,11 +34,14 @@ const buildEnv = createNextConfigEnv(
           'For standalone mode: https://nextjs.org/docs/app/api-reference/next-config-js/output',
       })
       .optional(),
+    STRIPE_PUBLISHABLE_KEY: z.string(),
+    STRIPE_SECRET_KEY: z.string(),
   })
 );
 
 const config: NextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   env: {
     ...buildEnv,
   },
@@ -46,6 +49,7 @@ const config: NextConfig = {
     'www.issilo.com',
     'file.issilo.com',
     'file-stage.issilo.com',
+    'checkout.stripe.com',
   ],
   images: {
     remotePatterns: [
@@ -63,7 +67,11 @@ const config: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'file-stage.issilo.com',
+        hostname: 'fastly.picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
       },
     ],
   },
