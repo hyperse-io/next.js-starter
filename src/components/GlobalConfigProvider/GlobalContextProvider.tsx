@@ -18,21 +18,7 @@ type GlobalProviderProps = {
   domain: string;
 };
 
-type AppCtxAction = {
-  // type: 'SET_CURRENCY_CODE';
-  // value: CurrencyCode;
-};
-
-function appReducer(
-  state: GlobalContextState,
-  action: AppCtxAction
-): GlobalContextState {
-  // if (action.type === 'SET_CURRENCY_CODE') {
-  //   return {
-  //     ...state,
-  //     currencyCode: action.value,
-  //   };
-  // }
+function appReducer(state: GlobalContextState): GlobalContextState {
   return state;
 }
 
@@ -42,34 +28,23 @@ const initialState: GlobalContextState = {
 };
 
 export function GlobalConfigProvider(props: GlobalProviderProps) {
-  const { children, globals, locale, domain } = props;
+  const { children, globals, domain } = props;
   const initialConfig = {
     ...initialState,
-    // Make sure that UK default locale is `GBP`....
-    // currencyCode:
-    //   defaultCurrencyCodeOfLocale[
-    //     locale as keyof typeof defaultCurrencyCodeOfLocale
-    //   ] || CurrencyCode.USD,
   };
 
   const [storageState, setConfig] = useLocalStorageState('global-setting', {
     defaultValue: initialConfig,
   });
 
-  const [state, dispatch] = useReducer(appReducer, {
+  const [state] = useReducer(appReducer, {
     ...initialState,
     ...storageState,
     // Make server settings override local storage settings, place at the end
     ...globals,
   });
 
-  const stateSetter: GlobalContextSetter = useMemo(
-    () => ({
-      // setCurrencyCode: (value: CurrencyCode) =>
-      //   dispatch({ type: 'SET_CURRENCY_CODE', value }),
-    }),
-    []
-  );
+  const stateSetter: GlobalContextSetter = useMemo(() => ({}), []);
 
   useEffect(() => {
     // Only update local storage when the state changes

@@ -10,5 +10,67 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, zh {🇨🇳 Chinese} en {🇺🇸 English} other {Unknown}}"
+  },
+  "Stripe": {
+    "Documentation": {
+      "Intent": "构建可处理复杂付款流程的集成，付款流程的状态会随着 PaymentIntent 的生命周期发生变化。从最初创建到整个结账过程，此 API 会一直跟踪付款状态，并在必要时触发额外的验证步骤。",
+      "Checkout": "Checkout 是一种低代码、预构建的支付表单，可以由 Stripe 托管或嵌入到您的网站中。Checkout 使用 Checkout Sessions API。您可以将 API 与 Stripe Elements 一起使用，以构建更加个性化的结账体验。"
+    },
+    "Examples": {
+      "title": "Stripe Checkout 示例",
+      "useForm": "使用 Checkout 表单",
+      "useComponent": "使用 Checkout 组件",
+      "useRedirect": "重定向到 Stripe Checkout"
+    },
+    "Payment": {
+      "title": "支付",
+      "description": "请输入您的支付详情",
+      "button": "立即支付",
+      "form": {
+        "email": "邮箱",
+        "emailPlaceholder": "请输入您的邮箱",
+        "extraInfo": "额外的信息，不包含在 Stripe 的支付元素中，业务自己定义"
+      }
+    },
+    "Success": {
+      "title": "支付成功"
+    },
+    "Canceled": {
+      "title": "支付取消"
+    }
+  },
+  "Next": {
+    "Examples": {
+      "title": "Next Checkout 示例",
+      "useForm": "使用 Checkout 表单",
+      "useComponent": "使用 Checkout 组件",
+      "useRedirect": "重定向到 Next Checkout"
+    },
+    "Payment": {
+      "title": "支付",
+      "description": "请输入您的支付详情",
+      "button": "立即支付",
+      "form": {
+        "email": "邮箱",
+        "emailPlaceholder": "请输入您的邮箱",
+        "extraInfo": "额外的信息，不包含在 Stripe 的支付元素中，业务自己定义"
+      }
+    },
+    "Success": {
+      "title": "支付成功"
+    },
+    "Canceled": {
+      "title": "支付取消"
+    }
+  },
+  "OrderSummary": {
+    "title": "订单概览",
+    "subtotal": "小计",
+    "shipping": "运费",
+    "tax": "税",
+    "total": "总计"
+  },
+  "Products": {
+    "title": "商品"
   }
 }

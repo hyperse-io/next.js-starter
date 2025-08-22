@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { siteMetadata } from '@/data/siteMetadata';
+import { siteMetadata } from '@/config/siteMetadata';
 
 // https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots
 export default function robots(): MetadataRoute.Robots {
@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: `${siteMetadata.siteUrl}/sitemap.xml`,
-    host: siteMetadata.siteUrl,
+    sitemap: `${siteMetadata().siteUrl}/sitemap.xml`,
+    host: siteMetadata().siteUrl,
   };
 }

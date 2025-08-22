@@ -10,6 +10,7 @@ export default defineConfig([
       'tailwindcss/no-custom-classname': 'off',
       'react-hooks/exhaustive-deps': 'off',
       'sonarjs/prefer-read-only-props': 'off',
+      'react/no-unknown-property': 'off',
       'no-restricted-imports': [
         'error',
         {

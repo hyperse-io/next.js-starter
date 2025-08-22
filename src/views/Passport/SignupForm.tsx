@@ -46,14 +46,6 @@ const REGISTER_CUSTOMER_ACCOUNT = graphql(`
   }
 `);
 
-const SET_MY_FROM_REFERRAL_CODE = graphql(`
-  mutation SetMyFromReferralCode($referralCode: String!) {
-    setCustomerFromReferralCode(referralCode: $referralCode) {
-      id
-    }
-  }
-`);
-
 interface SignupFormProps {
   /**
    * If pass login success, we will call this callback function,

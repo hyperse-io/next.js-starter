@@ -8,6 +8,8 @@ declare global {
       NEXT_PUBLIC_SHOP_API: string;
       NEXT_PUBLIC_AUTH_URL: string;
       NEXT_PUBLIC_RECAPTCHA_SITE_KEY: string;
+      STRIPE_PUBLISHABLE_KEY: string;
+      STRIPE_SECRET_KEY: string;
     }
   }
 }

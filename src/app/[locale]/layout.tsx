@@ -6,6 +6,7 @@ import { ProviderWrapper } from '@/components/ProviderWrapper';
 import { defaultDomain } from '@/config/region';
 import { routing } from '@/i18n/routing';
 import { fonts } from '@/theme/fonts';
+import { CheckoutProvider } from '@/views/Checkout/CheckoutProvider';
 import { cn } from '@heroui/react';
 
 export default async function LocaleLayout({
@@ -22,12 +23,7 @@ export default async function LocaleLayout({
   // Enable static rendering
   setRequestLocale(locale);
 
-  const domainLocale = (routing.domains || []).find(
-    (d) => d.defaultLocale === locale
-  );
-
-  const domainName = domainLocale ? domainLocale.domain : defaultDomain;
-  const domain = `https://${domainName.replace(/(?:https|http)?:\/\//, '')}`;
+  const domain = `https://${defaultDomain.replace(/(?:https|http)?:\/\//, '')}`;
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -38,14 +34,14 @@ export default async function LocaleLayout({
       </head>
       <body
         className={cn(
-          'text-foreground bg-background min-h-screen font-sans antialiased',
+          'text-foreground bg-background font-sans antialiased',
           fonts.sans.variable,
           fonts.mono.variable
         )}
       >
         <NextIntlClientProvider>
           <ProviderWrapper locale={locale} domain={domain}>
-            {children}
+            <CheckoutProvider>{children}</CheckoutProvider>
           </ProviderWrapper>
         </NextIntlClientProvider>
       </body>
