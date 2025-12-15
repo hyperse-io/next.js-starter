@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode } from 'react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
@@ -27,6 +25,7 @@ type NoSsrProps = {
 export function NoSsr(props: NoSsrProps) {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = useState(false);
+
   useEnhancedEffect(() => {
     if (!defer) {
       setMountedState(true);
@@ -35,8 +34,13 @@ export function NoSsr(props: NoSsrProps) {
 
   useEffect(() => {
     if (defer) {
-      setMountedState(true);
+      // Use setTimeout to defer to next frame, avoiding synchronous setState in effect
+      const timer = setTimeout(() => {
+        setMountedState(true);
+      }, 0);
+      return () => clearTimeout(timer);
     }
+    return () => {};
   }, [defer]);
 
   return mountedState ? children : fallback;

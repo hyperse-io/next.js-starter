@@ -41,7 +41,7 @@ export function ProfileLinks({ activeCustomer }: ProfileLinksProps) {
         <div
           key={link.link}
           className={cn(
-            'border-divider/80 flex min-w-[300px] gap-3 border-b px-6 py-2'
+            'flex min-w-[300px] gap-3 border-b border-divider/80 px-6 py-2'
           )}
         >
           {activeCustomer?.myTotalInvitedCustomers &&

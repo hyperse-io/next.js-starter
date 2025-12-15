@@ -8,7 +8,7 @@ export type CardReviewProps = HTMLAttributes<HTMLDivElement> & ReviewType;
 export const CardReview = ({ className, ...review }: CardReviewProps) => {
   return (
     <div
-      className={cn('rounded-medium bg-content1 shadow-small p-5', className)}
+      className={cn('rounded-medium bg-content1 p-5 shadow-small', className)}
     >
       <Review {...review} />
     </div>

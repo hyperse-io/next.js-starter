@@ -7,7 +7,7 @@ import { atom, useAtom } from 'jotai';
 import { graphql } from '@/common/graphql';
 import { useRouteChange } from '@/hooks/useRouteChange';
 import { redirect } from '@/i18n/routing';
-import { type ApolloQueryResult, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client/react';
 import { removeQueryString } from '@dimjs/utils';
 import { addToast, Modal, ModalContent } from '@heroui/react';
 import { SigninForm } from './SigninForm';
@@ -57,7 +57,9 @@ export type ActiveCustomer = ActiveCustomerData['activeCustomer'];
 const authModalAtom = atom<{
   open: boolean;
   resolve: null | ((customer: ActiveCustomer) => void);
-  refresh: null | (() => Promise<ApolloQueryResult<ActiveCustomerData>>);
+  refresh:
+    | null
+    | (() => Promise<ResultOf<typeof ACTIVE_CUSTOMER> | undefined | null>);
   activeCustomer: ActiveCustomer;
 }>({
   open: false,
@@ -78,7 +80,9 @@ export const usePassport = () => {
   const locale = useLocale();
 
   const refreshActiveUser = () => {
-    return refetch();
+    return refetch().then((result) => ({
+      activeCustomer: result.data?.activeCustomer ?? null,
+    }));
   };
 
   const signout = () => {
@@ -91,7 +95,7 @@ export const usePassport = () => {
         });
       } else {
         addToast({
-          title: result.errors?.[0]?.message || 'Logout failed',
+          title: result.error?.message || 'Logout failed',
           color: 'danger',
         });
       }
@@ -141,14 +145,12 @@ export const usePassport = () => {
         });
       }
 
-      updateAuthStatus((prev) => {
-        return {
-          ...prev,
-          open: true,
-          resolve,
-          refresh: refreshActiveUser,
-        };
-      });
+      updateAuthStatus((prev) => ({
+        ...prev,
+        open: true,
+        resolve,
+        refresh: refreshActiveUser,
+      }));
     });
   };
 
@@ -178,15 +180,15 @@ export function PassportModal() {
 
   const onUserLoginSuccess = () => {
     authStatus.refresh?.().then((result) => {
-      const activeCustomer = result.data.activeCustomer;
+      const activeCustomer = result?.activeCustomer;
       updateAuthStatus((prev) => ({
         ...prev,
         open: false,
         resolve: null,
         refresh: null,
-        activeCustomer,
+        activeCustomer: activeCustomer ?? null,
       }));
-      authStatus.resolve?.(activeCustomer);
+      authStatus.resolve?.(activeCustomer ?? null);
     });
   };
 

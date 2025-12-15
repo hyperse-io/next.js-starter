@@ -9,6 +9,11 @@ export const defaultPageSize = 10;
 export const cookieActiveLocale = 'NEXT_LOCALE';
 
 /**
+ * The storage key for channel token
+ */
+export const channelTokenKey = 'channel';
+
+/**
  * The storage key for active channel
  */
 export const storageActiveChannelKey = 'activeChannel';

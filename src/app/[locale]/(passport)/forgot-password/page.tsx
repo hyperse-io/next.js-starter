@@ -13,7 +13,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
 
 export default function ForgetPasswordPage() {
   return (
-    <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
       <ForgotPwdView />
     </div>
   );

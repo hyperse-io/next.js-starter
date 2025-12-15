@@ -6,7 +6,7 @@ export const SocialLogin = () => {
     <>
       <div className="flex items-center gap-4 py-2">
         <Divider className="flex-1" />
-        <p className="text-tiny text-default-500 shrink-0">OR</p>
+        <p className="shrink-0 text-tiny text-default-500">OR</p>
         <Divider className="flex-1" />
       </div>
       <div className="flex flex-col gap-2">

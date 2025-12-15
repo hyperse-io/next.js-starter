@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { graphql } from '@/common/graphql';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import { addToast, Button, Input } from '@heroui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react/dist/iconify.js';
@@ -89,7 +89,7 @@ export const ResetPassword: FC<ResetPasswordProps> = ({
       if (onResetSuccess) {
         onResetSuccess();
       } else {
-        window.location.href = '/';
+        window.location.assign('/');
       }
     } else {
       if (
@@ -138,12 +138,12 @@ export const ResetPassword: FC<ResetPasswordProps> = ({
             >
               {showPassword ? (
                 <Icon
-                  className="text-default-400 pointer-events-none text-2xl"
+                  className="pointer-events-none text-2xl text-default-400"
                   icon="solar:eye-closed-linear"
                 />
               ) : (
                 <Icon
-                  className="text-default-400 pointer-events-none text-2xl"
+                  className="pointer-events-none text-2xl text-default-400"
                   icon="solar:eye-bold"
                 />
               )}

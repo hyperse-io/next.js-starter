@@ -6,7 +6,7 @@ import { errorLink } from '@/common/fetch/errorLink';
 import { getContextLink } from '@/common/fetch/getContextLink';
 import { setContextLink } from '@/common/fetch/setContextLink';
 import { uploadLink } from '@/common/fetch/uploadHttpLink';
-import { from } from '@apollo/client';
+import { ApolloLink } from '@apollo/client';
 import {
   ApolloClient,
   ApolloNextAppProvider,
@@ -20,8 +20,16 @@ function makeClient() {
     cache: new InMemoryCache({
       typePolicies: cacheTypePolicies,
     }),
-    link: from([getContextLink, setContextLink, errorLink, uploadLink]),
-    connectToDevTools: process.env.NODE_ENV === 'development',
+    link: ApolloLink.from([
+      getContextLink,
+      setContextLink,
+      errorLink,
+      uploadLink,
+    ]),
+    devtools: {
+      enabled: process.env.NODE_ENV === 'development',
+      name: 'Hyperse',
+    },
     // Note: we must keep default fetchPolicy for client, for special case, we need to get the latest data from server we can
     // override it via query context.
     // defaultOptions: clientDefaultOptions,

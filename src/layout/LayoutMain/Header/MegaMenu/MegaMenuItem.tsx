@@ -60,7 +60,7 @@ export function MegaMenuItem({ collectionItem }: MegaMenuItemProps) {
   const topLinkItem = (
     <Link
       href={categorySlug(collectionItem.slug)}
-      className={cn('text-foreground/80 py-2', {
+      className={cn('py-2 text-foreground/80', {
         'text-foreground': isOpen,
       })}
     >
@@ -107,7 +107,7 @@ export function MegaMenuItem({ collectionItem }: MegaMenuItemProps) {
                           <Link
                             href={slugHref}
                             underline="hover"
-                            className={cn('text-foreground-700 py-2 text-sm', {
+                            className={cn('py-2 text-sm text-foreground-700', {
                               'text-foreground': isActive,
                             })}
                           >

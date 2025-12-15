@@ -34,7 +34,7 @@ export default async function LocaleLayout({
       </head>
       <body
         className={cn(
-          'text-foreground bg-background font-sans antialiased',
+          'bg-background font-sans text-foreground antialiased',
           fonts.sans.variable,
           fonts.mono.variable
         )}

@@ -15,14 +15,14 @@ export const CheckoutForm = () => {
   const locale = useLocale();
   const t = useTranslations('Stripe');
   const { data } = useCheckoutContext();
-  const promise = useMemo(() => {
+  const promise = () => {
     return fetch('/api/stripe/create-checkout-session', {
       method: 'POST',
       body: JSON.stringify({ data, uiMode: 'embedded' }),
     })
       .then((res) => res.json())
       .then((data) => data.clientSecret);
-  }, []);
+  };
 
   const stripePromise = useMemo(() => {
     return loadStripe(process.env.STRIPE_PUBLISHABLE_KEY, {
@@ -40,7 +40,7 @@ export const CheckoutForm = () => {
           <EmbeddedCheckoutProvider
             stripe={stripePromise}
             options={{
-              fetchClientSecret: () => promise,
+              fetchClientSecret: promise,
             }}
           >
             <EmbeddedCheckout />

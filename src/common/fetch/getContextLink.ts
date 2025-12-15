@@ -4,9 +4,9 @@ import {
   cookieAuthTokenKey,
   storageActiveChannelKey,
 } from '@/config/constants';
-import { setContext } from '@apollo/client/link/context';
+import { SetContextLink } from '@apollo/client/link/context';
 
-export const getContextLink = setContext(async (_, prevContext) => {
+export const getContextLink = new SetContextLink(async (prevContext) => {
   // active channel
   const activeChannel =
     prevContext[storageActiveChannelKey] ||

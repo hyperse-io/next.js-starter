@@ -1,13 +1,13 @@
-import { fetcher } from '@/common/fetcher';
-
 export const fetchGithubProject = async (
   project: string
 ): Promise<{
   name: string;
   description: string;
 }> => {
-  const res = await fetcher(`https://api.github.com/repos/${project}`);
-  return res satisfies {
+  const res = await fetch(`https://api.github.com/repos/${project}`);
+  const data = await res.json();
+  return data satisfies {
     name: string;
+    description: string;
   };
 };

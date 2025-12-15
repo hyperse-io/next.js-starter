@@ -14,13 +14,14 @@ import {
   Spacer,
 } from '@heroui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PaymentElement, useCheckout } from '@stripe/react-stripe-js';
+import type { StripeCheckoutValue } from '@stripe/react-stripe-js/checkout';
+import { PaymentElement, useCheckout } from '@stripe/react-stripe-js/checkout';
 
 const emailSchema = z.object({
   email: z.email(),
 });
 
-const validateEmail = async (email: string, checkout: any) => {
+const validateEmail = async (email: string, checkout: StripeCheckoutValue) => {
   const updateResult = await checkout.updateEmail(email);
   const isValid = updateResult.type !== 'error';
 
@@ -45,24 +46,29 @@ export const CheckoutForm = () => {
     try {
       setIsLoading(true);
 
-      const { isValid, message } = await validateEmail(data.email, checkout);
-      if (!isValid) {
-        setMessage(message);
+      if (checkout.type === 'loading') {
+        setMessage('Loading...');
         setIsLoading(false);
         return;
       }
+      if (checkout.type === 'error') {
+        setMessage(checkout.error.message);
+        setIsLoading(false);
+        return;
+      }
+      if (checkout.type === 'success') {
+        const { isValid, message } = await validateEmail(
+          data.email,
+          checkout.checkout
+        );
+        if (!isValid) {
+          setMessage(message);
+          setIsLoading(false);
+          return;
+        }
 
-      const confirmResult = await checkout.confirm();
-
-      console.log(confirmResult);
-
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Otherwise, your customer will be redirected to
-      // your `return_url`. For some payment methods like iDEAL, your customer will
-      // be redirected to an intermediate site first to authorize the payment, then
-      // redirected to the `return_url`.
-      if (confirmResult.type === 'error') {
-        setMessage(confirmResult.error.message);
+        const confirmResult = await checkout.checkout.confirm();
+        console.log(confirmResult);
       }
     } catch (error: any) {
       setMessage(error.message);
@@ -94,16 +100,18 @@ export const CheckoutForm = () => {
         <CardBody>
           <PaymentElement id="payment-element" />
           <Spacer y={4} />
-          <Button
-            fullWidth
-            id="submit"
-            type="submit"
-            variant="shadow"
-            color="primary"
-            isLoading={isLoading}
-          >
-            {`${t('Payment.button')} (${checkout.total.total.amount})`}
-          </Button>
+          {checkout.type === 'success' && (
+            <Button
+              fullWidth
+              id="submit"
+              type="submit"
+              variant="shadow"
+              color="primary"
+              isLoading={isLoading}
+            >
+              {`${t('Payment.button')} (${checkout.checkout.total.total})`}
+            </Button>
+          )}
           {/* Show any error or success messages */}
           <Spacer y={4} />
           {message && (

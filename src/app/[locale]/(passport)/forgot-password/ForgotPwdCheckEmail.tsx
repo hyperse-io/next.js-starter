@@ -20,7 +20,7 @@ export const ForgotPwdCheckEmail: FC<ForgotPwdCheckEmailProps> = ({
         <p className="text-center">
           We have sent a password recover instructions to your email
         </p>
-        <p className="text-primary text-center">{emailAddress}</p>
+        <p className="text-center text-primary">{emailAddress}</p>
       </div>
       <Button as={Link} href="/login" fullWidth color="primary">
         Sign in{' '}

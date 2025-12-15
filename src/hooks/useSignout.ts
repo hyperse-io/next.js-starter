@@ -1,7 +1,7 @@
 import { graphql } from '@/common/graphql';
 import { usePathname } from '@/i18n/routing';
 import { usePassport } from '@/views/Passport/PassportModal';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import { addToast } from '@heroui/react';
 
 const SIGN_OUT = graphql(`
@@ -29,7 +29,7 @@ export const useSignout = () => {
         }
       } else {
         addToast({
-          title: result.errors?.[0]?.message ?? 'Failed to sign out',
+          title: result.error?.message ?? 'Failed to sign out',
           color: 'danger',
         });
       }

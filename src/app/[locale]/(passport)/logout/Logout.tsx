@@ -14,7 +14,7 @@ export const Logout = () => {
   }, []);
 
   return (
-    <div className="max-w-8xl mx-auto my-4 px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto my-4 max-w-8xl px-4 sm:px-6 lg:px-8">
       <LoadingBox loadingTxt="Logging out..." />
     </div>
   );

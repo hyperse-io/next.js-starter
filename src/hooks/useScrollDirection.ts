@@ -1,5 +1,3 @@
-'use client';
-
 import { useCallback, useEffect, useState } from 'react';
 
 type ScrollDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT' | null;
@@ -67,11 +65,8 @@ export function useScrollDirection(
   }
 ): ScrollDirectionHookResult {
   const [targetFromApi, setTargetFromApi] = useState<HTMLElement | undefined>();
-  const [targetFromProps, setTargetFromProps] = useState<
-    HTMLElement | undefined
-  >();
   const [scrollDirection, setScrollDirection] = useState<ScrollDirection>(null);
-  const targetToUse = targetFromProps || targetFromApi;
+  const targetToUse = options.target || targetFromApi;
 
   const isScrolling = scrollDirection !== null;
   const isScrollingX =
@@ -86,10 +81,6 @@ export function useScrollDirection(
   const scrollTargetRef = useCallback((node: HTMLElement) => {
     setTargetFromApi(node);
   }, []);
-
-  useEffect(() => {
-    setTargetFromProps(options.target);
-  }, [options.target]);
 
   useEffect(() => {
     if (isBrowser()) {
@@ -126,7 +117,8 @@ export function useScrollDirection(
       addScrollListener(handleScroll, targetToUse);
       return () => removeScrollListener(handleScroll, targetToUse);
     }
-    return undefined;
+
+    return () => {};
   }, [timeout, targetToUse]);
 
   return {

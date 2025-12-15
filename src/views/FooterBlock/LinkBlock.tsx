@@ -33,7 +33,7 @@ export const LinkBlock = ({ blockTitle, links }: Props) => {
           {links.map((link) => (
             <li key={link.id}>
               <Link
-                className="text-default-500 text-sm"
+                className="text-sm text-default-500"
                 underline="hover"
                 href={link.href}
               >

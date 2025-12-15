@@ -1,9 +1,9 @@
-import type { DefaultOptions } from '@apollo/client';
+import type { ApolloClient } from '@apollo/client';
 
 /**
  * https://www.apollographql.com/docs/react/api/core/ApolloClient#defaultoptions
  */
-export const clientDefaultOptions: DefaultOptions = {
+export const clientDefaultOptions: ApolloClient.DefaultOptions = {
   watchQuery: {
     fetchPolicy: 'cache-and-network',
     errorPolicy: 'ignore',

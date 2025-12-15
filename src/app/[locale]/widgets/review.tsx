@@ -63,8 +63,8 @@ export const Review = ({
       </div>
     </div>
     <div className="mt-4 w-full">
-      <p className="text-default-900 font-medium">{title}</p>
-      <p className="text-default-500 mt-2">{content || children}</p>
+      <p className="font-medium text-default-900">{title}</p>
+      <p className="mt-2 text-default-500">{content || children}</p>
     </div>
   </div>
 );

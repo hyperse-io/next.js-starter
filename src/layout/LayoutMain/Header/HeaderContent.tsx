@@ -32,7 +32,7 @@ export function HeaderContent({
     <Navbar
       classNames={{
         item: 'data-[active=true]:text-primary',
-        wrapper: 'px-4 sm:px-6 max-w-8xl justify-between',
+        wrapper: 'max-w-8xl justify-between px-4 sm:px-6',
         toggle: 'sm:hidden',
       }}
       height="60px"
@@ -45,7 +45,7 @@ export function HeaderContent({
         <NavbarBrand className="mx-2 flex items-center gap-2">
           <Link href="/" className="hidden sm:flex">
             <Logo />
-            <span className="text-foreground mx-2 font-semibold">Vercel</span>
+            <span className="mx-2 font-semibold text-foreground">Vercel</span>
           </Link>
           {/* <SearchButton simple variant="light" className="sm:hidden" /> */}
           <NavbarMenuToggle

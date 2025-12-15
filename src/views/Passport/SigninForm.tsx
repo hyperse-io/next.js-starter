@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
 import { z } from 'zod';
 import { graphql } from '@/common/graphql';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import { addToast, Button, Checkbox, Input, Link } from '@heroui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';
@@ -90,7 +90,7 @@ export const SigninForm: FC<SigninFormProps> = ({
       if (onLoginSuccess) {
         onLoginSuccess();
       } else {
-        window.location.href = callbackUrl;
+        window.location.assign(callbackUrl);
       }
     } else {
       if (
@@ -113,7 +113,7 @@ export const SigninForm: FC<SigninFormProps> = ({
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="rounded-large flex w-full max-w-sm flex-col gap-4 px-2 pt-6 pb-10">
+      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large px-2 pt-6 pb-10">
         <p className="pb-4 text-left text-3xl font-semibold">
           {shortTitle ? 'Log in' : 'Sign in with email'}
           <span aria-label="emoji" className="ml-2" role="img">
@@ -146,12 +146,12 @@ export const SigninForm: FC<SigninFormProps> = ({
               >
                 {isVisible ? (
                   <Icon
-                    className="text-default-400 pointer-events-none text-2xl"
+                    className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-closed-linear"
                   />
                 ) : (
                   <Icon
-                    className="text-default-400 pointer-events-none text-2xl"
+                    className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-bold"
                   />
                 )}
@@ -187,7 +187,7 @@ export const SigninForm: FC<SigninFormProps> = ({
             Sign In
           </Button>
           <SocialLogin />
-          <p className="text-small text-center">
+          <p className="text-center text-small">
             Need to create an account?&nbsp;
             <Link href="/register" size="sm">
               Sign Up

@@ -44,7 +44,7 @@ export function FooterBlock({ footerLinks }: FooterBlockProps) {
           <div className="space-y-8 md:pr-8">
             <div className="flex items-center justify-start">
               <Logo size={40} />
-              <span className="text-medium ml-2 font-medium">Vercel</span>
+              <span className="ml-2 text-medium font-medium">Vercel</span>
             </div>
             <p className="text-small text-default-500">
               This is a demo site for Vercel.

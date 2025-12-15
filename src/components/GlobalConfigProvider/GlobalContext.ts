@@ -1,20 +1,13 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { createCtx } from '@/utils/createCtx';
 
-export type GlobalConfigData = {
-  // settings: Array<{
-  //   id: string;
-  //   key: string;
-  //   value: any;
-  // }>;
-};
+export type GlobalConfigData = {};
 
 export type GlobalContextState = GlobalConfigData & {
   domain: string;
 };
 
-export type GlobalContextSetter = {
-  // setCurrencyCode: (code: CurrencyCode) => void;
-};
+export type GlobalContextSetter = {};
 
 export const [useGlobalConfig, AppGlobalConfigProvider] = createCtx<
   GlobalContextState & GlobalContextSetter

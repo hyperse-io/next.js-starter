@@ -1,12 +1,12 @@
 'use client';
 import { type FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { z } from 'zod';
 import { graphql } from '@/common/graphql';
 import { IconSkeleton } from '@/components/IconSkeleton';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import {
   addToast,
   Button,
@@ -73,7 +73,7 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
-  const { register, handleSubmit, formState, setValue, watch } = useForm<
+  const { register, handleSubmit, formState, setValue, control } = useForm<
     z.infer<typeof signupSchema>
   >({
     resolver: zodResolver(signupSchema),
@@ -116,7 +116,7 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
       if (onLoginSuccess) {
         onLoginSuccess();
       } else {
-        window.location.href = callbackUrl;
+        window.location.assign(callbackUrl);
       }
     } else {
       addToast({
@@ -133,11 +133,11 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
       });
     }
   };
-  const birthday = watch('birthday');
-  const phoneNumber = watch('phoneNumber');
+  const birthday = useWatch({ control, name: 'birthday' });
+  const phoneNumber = useWatch({ control, name: 'phoneNumber' });
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <div className="rounded-large flex w-full max-w-md flex-col gap-4 px-8 pt-6 pb-10">
+      <div className="flex w-full max-w-md flex-col gap-4 rounded-large px-8 pt-6 pb-10">
         <p className="pb-4 text-left text-3xl font-semibold">
           Sign Up
           <span aria-label="emoji" className="ml-2" role="img">
@@ -202,12 +202,12 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
               <button type="button" onClick={toggleVisibility}>
                 {isVisible ? (
                   <Icon
-                    className="text-default-400 pointer-events-none text-2xl"
+                    className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-closed-linear"
                   />
                 ) : (
                   <Icon
-                    className="text-default-400 pointer-events-none text-2xl"
+                    className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-bold"
                   />
                 )}
@@ -255,7 +255,7 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
               <IconSkeleton>
                 <Icon
                   icon="line-md:phone-call-loop"
-                  className="text-default-500 size-6"
+                  className="size-6 text-default-500"
                 />
               </IconSkeleton>
             }
@@ -274,7 +274,7 @@ export const SignupForm: FC<SignupFormProps> = ({ onLoginSuccess }) => {
             Sign Up
           </Button>
           <SocialLogin />
-          <p className="text-small text-center">
+          <p className="text-center text-small">
             Already have an account?&nbsp;
             <Link href="/login" size="sm">
               Log In

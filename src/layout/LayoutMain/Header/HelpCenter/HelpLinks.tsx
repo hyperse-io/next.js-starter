@@ -42,7 +42,7 @@ export function HelpLinks() {
       <CardHeader className="flex flex-col px-0 pb-0">
         <div className="flex w-full items-center justify-between px-5 py-2">
           <div className="inline-flex items-center gap-1">
-            <h4 className="text-large inline-block align-middle font-medium">
+            <h4 className="inline-block align-middle text-large font-medium">
               Help & FAQ
             </h4>
           </div>
@@ -54,7 +54,7 @@ export function HelpLinks() {
             <div
               key={link.link}
               className={cn(
-                'border-divider/80 flex min-w-[300px] gap-3 border-b px-6 py-2'
+                'flex min-w-[300px] gap-3 border-b border-divider/80 px-6 py-2'
               )}
             >
               <Link

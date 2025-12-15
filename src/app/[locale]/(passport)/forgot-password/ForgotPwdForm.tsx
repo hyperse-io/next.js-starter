@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { graphql } from '@/common/graphql';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 import { addToast, Input, Link } from '@heroui/react';
 import { Button } from '@heroui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
