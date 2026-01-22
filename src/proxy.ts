@@ -17,8 +17,7 @@ const intlMiddleware = createIntlMiddleware(routing);
 // and not for pages listed in `pages`.
 const authMiddleware = createAuthMiddleware(intlMiddleware);
 const regexLocales = routing.locales.map((s) => `/${s}`);
-
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
   const secretPathnameRegex = RegExp(
     `^(?:${regexLocales.join('|')})?(?:${secretPages.join('|')})/?$`,
     'i'
@@ -38,6 +37,6 @@ export const config = {
     // path and should always be included
     // `community` should not include by locale
     '/',
-    '/((?!api|blog|community|hps_inspector|_next|.*\\..*).*)',
+    '/((?!api|hps_inspector|blog|community|_next|.*\\..*).*)',
   ],
 };
