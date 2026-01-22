@@ -9,6 +9,8 @@ export const routing = defineRouting({
   localeDetection: true,
 });
 
+export type Locales = (typeof routing)['locales'][number];
+
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration
 export const {
